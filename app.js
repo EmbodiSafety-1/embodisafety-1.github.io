@@ -79,7 +79,7 @@ document.addEventListener('visibilitychange',()=>{updateHero();updateGallery();}
 const sectionObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)navLinks.forEach(link=>{const active=link.hash===`#${entry.target.id}`;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});}),{rootMargin:'-12% 0px -65% 0px'});
 document.querySelectorAll('main>section').forEach(section=>sectionObserver.observe(section));
 // Reveal each block once as it enters the viewport.
-const revealElements=[...document.querySelectorAll('.section-heading,.native-panel,.overview-text,.demo-card,.dataset-facts,.track,.environment-mixture,.score-highlights,.score-chart,.table-scroll,.podium-card,.leaderboard-scroll')];
+const revealElements=[...document.querySelectorAll('.comic-panel,.section-heading,.native-panel,.overview-text,.demo-card,.dataset-facts,.track,.environment-mixture,.score-highlights,.score-chart,.table-scroll,.podium-card,.leaderboard-scroll')];
 if(!reducedMotion.matches){
  const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);}});},{threshold:.08,rootMargin:'0px 0px -24px 0px'});
  revealElements.forEach((el,index)=>{el.classList.add('reveal');el.style.setProperty('--reveal-delay',`${el.classList.contains('demo-card')?(index%4)*65:0}ms`);revealObserver.observe(el);});
