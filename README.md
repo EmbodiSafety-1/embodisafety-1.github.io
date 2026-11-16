@@ -1,35 +1,43 @@
-# EmbodiSafety
+# EmbodiSafety project page
 
-Academic project page for **EmbodiSafety: Benchmarking Risk Understanding and Response in Embodied AI**.
+Local website for **EmbodiSafety: Benchmarking Risk Understanding and Response in Embodied AI**. This revision has not been uploaded to GitHub.
 
-Website: https://embodisafety-1.github.io/
+## Preview
 
-## Preview locally
+Open `index.html` directly, or run `python preview.py` and visit `http://127.0.0.1:8766/`. The preview server supports byte-range requests for video timeline navigation. No dependencies or build step are required.
 
-Run `python -m http.server 8000` in this directory, then open `http://localhost:8000`. The site is also viewable by opening `index.html` directly. No build or package installation is needed.
+## Content
+
+The page presents a newly drawn benchmark overview, 20 playable demonstrations, dataset coverage, reference-model complete-decision accuracy, and dataset construction and evaluation. It contains no training or adapted-model section. The eight-model chart and 16-model table use the supplied manuscript's Table 4; absent L3 results remain unreported. The figures are designed for the website and contain no manuscript figure crops.
+
+## Video cover
+
+The cover is a single 24.125-second H.264 MP4, 1280×720 at 24 fps, without audio, with faststart. Its size is 1,851,376 bytes. Three complete clips play continuously and loop in this order:
+
+1. Medication theft.
+2. Wet tray near electronics.
+3. Passport destruction.
+
+The cover controls show sequence numbers only. Media source paths and verification notes stay outside the website in the task's research directory.
+
+`assets/hero-chapters.json` records chapter timing and image focus. The same data is embedded in the page so it also works when opened directly from disk. The timeline seeks within one video; it does not reload individual clips. Playback pauses when the cover is outside the viewport or the tab is hidden, and respects reduced-motion preferences.
+
+## Demonstrations and visual design
+
+The gallery contains 20 distinct generated scenarios across seven environments. Silent H.264 videos total approximately 3.9 MB. Only visible videos load and play; environment filters and individual playback controls support closer inspection. The overview uses four larger frames selected for visible hazard evidence and natural hand geometry. The page and native SVG diagrams use white, teal, and sage green.
 
 ## Files
 
-- `index.html`: research content and accessible markup.
-- `styles.css`: white academic design, responsive desktop and mobile layouts.
-- `app.js`: navigation, video playback, example filtering, results chart, figure enlargement.
-- `assets/video-manifest.json`: the source-matched Figure 1 examples and reference decisions.
-- `assets/videos/` and `assets/posters/`: compressed video clips and WebP covers.
-- `assets/figures/`: cropped paper figures.
-- `assets/EmbodiSafety_Benchmark.pdf`: the supplied manuscript.
+- `index.html` — page content, scores, and embedded chapter data.
+- `styles.css` — desktop and mobile layout.
+- `app.js` — chapter synchronization, timeline, playback, navigation, and figure enlargement.
+- `assets/videos/hero-examples.mp4` — continuous cover.
+- `assets/hero-chapters.json` — three cover chapters.
+- `assets/demos/` — gallery videos, posters, and manifest.
+- `assets/figures/web-overview.svg` — newly drawn benchmark overview.
+- `assets/figures/web-construction.svg` — newly drawn construction diagram.
+- `assets/posters/` — compressed cover posters.
+- `assets/EmbodiSafety_Benchmark.pdf` — supplied manuscript.
+- `preview.py` — local static preview with video seeking support.
 
-## Deploy
-
-GitHub Pages serves this repository from the root of `main`. Commit these files to `main` to publish. `.nojekyll` keeps the page buildless.
-
-## Media
-
-Only two videos were verified to match Figure 1 exactly. The remaining examples were omitted. Both clips are complete eight-second excerpts: 720×406, H.264, CRF 29, 24 fps, no audio, with MP4 faststart. Their combined size is 365,588 bytes (about 0.35 MiB).
-
-The opening videos respect reduced-motion preferences, can be paused together, and pause when outside the viewport or when the page is hidden. The examples section loads videos on demand and permits only one example to play at a time. It reuses the same media URLs as the hero.
-
-## Research content
-
-All reported tasks, model results, response modes, and reference decisions are taken from the user-supplied manuscript. No author affiliations, venue acceptance, dataset downloads, or benchmark-code availability are inferred.
-
-Page design inspired by https://xsparkai.com/Spark-0/. Research content, figures, and examples belong to the EmbodiSafety project.
+The public page must be updated only when publication is authorized. Its GitHub Pages target is the root of `main` in `EmbodiSafety-1/embodisafety-1.github.io`.

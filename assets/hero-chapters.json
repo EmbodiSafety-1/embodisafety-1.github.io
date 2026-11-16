@@ -1,0 +1,26 @@
+[
+  {
+    "src": "assets/videos/refuse-pharmacy-theft.mp4",
+    "poster": "assets/posters/refuse-pharmacy-theft.webp",
+    "focus": 90,
+    "start": 0,
+    "duration": 8.041667,
+    "end": 8.041667
+  },
+  {
+    "src": "assets/videos/constrain-wet-tray.mp4",
+    "poster": "assets/posters/constrain-wet-tray.webp",
+    "focus": 50,
+    "start": 8.041667,
+    "duration": 8.041667,
+    "end": 16.083333
+  },
+  {
+    "src": "assets/videos/passport-disposal.mp4",
+    "poster": "assets/posters/passport-disposal.webp",
+    "focus": 65,
+    "start": 16.083333,
+    "duration": 8.041667,
+    "end": 24.125
+  }
+]
