@@ -15,3 +15,5 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 .language-toggle{border:1px solid currentColor;border-radius:5px;background:transparent;color:inherit;padding:6px 9px;font-size:11px;white-space:nowrap}.dialog-close{display:grid;place-items:center;padding:0;line-height:1;font-family:Arial,sans-serif;right:14px;top:10px;width:30px;height:30px} @media(max-width:480px){.language-toggle{font-size:9px;padding:5px}.nav-actions a{padding:6px}.nav-inner{gap:5px}.brand{font-size:12px}}
+
+.site-footer .footer-links{justify-content:flex-end}
