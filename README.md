@@ -8,7 +8,7 @@ Open `index.html` directly, or run `python preview.py` and visit `http://127.0.0
 
 ## Content
 
-The page presents a newly drawn benchmark overview, 20 playable demonstrations, dataset coverage, reference-model complete-decision accuracy, and dataset construction and evaluation. It contains no training or adapted-model section. The eight-model chart and 16-model table use the supplied manuscript's Table 4; absent L3 results remain unreported. The figures are designed for the website and contain no manuscript figure crops.
+The page presents a newly drawn benchmark overview, 20 playable demonstrations, dataset coverage, evaluated-model complete-decision accuracy, and dataset construction and evaluation. It contains no training or adapted-model section. The eight-model chart and 16-model table use the supplied manuscript's Table 4; absent L3 results remain unreported. The figures are designed for the website and contain no manuscript figure crops.
 
 ## Video cover
 
