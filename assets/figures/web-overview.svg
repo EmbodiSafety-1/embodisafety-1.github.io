@@ -148,9 +148,9 @@
 <g id="complete-decision-results" transform="translate(0 110)">
 <rect x="810" y="552" width="770" height="378" rx="14" fill="#fff" stroke="#d9e7df" stroke-width="1.2"/>
 <text x="832" y="587" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700" fill="#183a33" text-anchor="start">(d) Complete-decision accuracy</text>
-<rect x="834" y="607" width="13" height="13" rx="3" fill="#167da1" stroke="none" stroke-width="1.2"/>
+<rect x="834" y="607" width="13" height="13" rx="3" fill="#165d46" stroke="none" stroke-width="1.2"/>
 <text x="856" y="619" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#70857d" text-anchor="start">Snapshot</text>
-<rect x="978" y="607" width="13" height="13" rx="3" fill="#b96325" stroke="none" stroke-width="1.2"/>
+<rect x="978" y="607" width="13" height="13" rx="3" fill="#86bf9b" stroke="none" stroke-width="1.2"/>
 <text x="1000" y="619" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#70857d" text-anchor="start">Trajectory</text>
 <text x="1557" y="619" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#70857d" text-anchor="end">Cumulative L3 (%) ↑</text>
 <line x1="1035.0" y1="641" x2="1035.0" y2="866" stroke="#e4eee8" stroke-width="1"/>
@@ -164,25 +164,25 @@
 <line x1="1528.0" y1="641" x2="1528.0" y2="866" stroke="#e4eee8" stroke-width="1"/>
 <text x="1528.0" y="888" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="400" fill="#70857d" text-anchor="middle">100</text>
 <text x="834" y="669" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" fill="#183a33" text-anchor="start">Claude-Opus-5.5</text>
-<rect x="1035" y="648" width="276.573" height="13" rx="3" fill="#167da1" stroke="none" stroke-width="1.2"/>
-<text x="1319.5729999999999" y="660" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#167da1" text-anchor="start">56.1</text>
-<rect x="1035" y="667" width="303.195" height="13" rx="3" fill="#b96325" stroke="none" stroke-width="1.2"/>
-<text x="1346.195" y="679" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#b96325" text-anchor="start">61.5</text>
+<rect x="1035" y="648" width="276.573" height="13" rx="3" fill="#165d46" stroke="none" stroke-width="1.2"/>
+<text x="1319.5729999999999" y="660" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#183a33" text-anchor="start">56.1</text>
+<rect x="1035" y="667" width="303.195" height="13" rx="3" fill="#86bf9b" stroke="none" stroke-width="1.2"/>
+<text x="1346.195" y="679" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#183a33" text-anchor="start">61.5</text>
 <text x="834" y="724" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" fill="#183a33" text-anchor="start">GPT-6-astra</text>
-<rect x="1035" y="703" width="275.094" height="13" rx="3" fill="#167da1" stroke="none" stroke-width="1.2"/>
-<text x="1318.094" y="715" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#167da1" text-anchor="start">55.8</text>
-<rect x="1035" y="722" width="281.99600000000004" height="13" rx="3" fill="#b96325" stroke="none" stroke-width="1.2"/>
-<text x="1324.996" y="734" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#b96325" text-anchor="start">57.2</text>
+<rect x="1035" y="703" width="275.094" height="13" rx="3" fill="#165d46" stroke="none" stroke-width="1.2"/>
+<text x="1318.094" y="715" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#183a33" text-anchor="start">55.8</text>
+<rect x="1035" y="722" width="281.99600000000004" height="13" rx="3" fill="#86bf9b" stroke="none" stroke-width="1.2"/>
+<text x="1324.996" y="734" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#183a33" text-anchor="start">57.2</text>
 <text x="834" y="779" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" fill="#183a33" text-anchor="start">GPT-5.6-sol</text>
-<rect x="1035" y="758" width="247.97899999999998" height="13" rx="3" fill="#167da1" stroke="none" stroke-width="1.2"/>
-<text x="1290.979" y="770" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#167da1" text-anchor="start">50.3</text>
-<rect x="1035" y="777" width="282.982" height="13" rx="3" fill="#b96325" stroke="none" stroke-width="1.2"/>
-<text x="1325.982" y="789" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#b96325" text-anchor="start">57.4</text>
+<rect x="1035" y="758" width="247.97899999999998" height="13" rx="3" fill="#165d46" stroke="none" stroke-width="1.2"/>
+<text x="1290.979" y="770" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#183a33" text-anchor="start">50.3</text>
+<rect x="1035" y="777" width="282.982" height="13" rx="3" fill="#86bf9b" stroke="none" stroke-width="1.2"/>
+<text x="1325.982" y="789" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#183a33" text-anchor="start">57.4</text>
 <text x="834" y="834" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" fill="#183a33" text-anchor="start">Gemini-3.8-Flash</text>
-<rect x="1035" y="813" width="253.895" height="13" rx="3" fill="#167da1" stroke="none" stroke-width="1.2"/>
-<text x="1296.895" y="825" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#167da1" text-anchor="start">51.5</text>
-<rect x="1035" y="832" width="260.304" height="13" rx="3" fill="#b96325" stroke="none" stroke-width="1.2"/>
-<text x="1303.304" y="844" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#b96325" text-anchor="start">52.8</text>
+<rect x="1035" y="813" width="253.895" height="13" rx="3" fill="#165d46" stroke="none" stroke-width="1.2"/>
+<text x="1296.895" y="825" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#183a33" text-anchor="start">51.5</text>
+<rect x="1035" y="832" width="260.304" height="13" rx="3" fill="#86bf9b" stroke="none" stroke-width="1.2"/>
+<text x="1303.304" y="844" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="650" fill="#183a33" text-anchor="start">52.8</text>
 <line x1="1035" y1="866" x2="1528" y2="866" stroke="#c7d9ce" stroke-width="1.2"/>
 <text x="1281" y="914" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="500" fill="#70857d" text-anchor="middle">Accuracy (%)</text>
 </g>

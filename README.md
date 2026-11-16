@@ -8,7 +8,7 @@ Open `index.html` directly, or run `python preview.py` and visit `http://127.0.0
 
 ## Content
 
-The page presents a newly drawn benchmark overview, 20 playable demonstrations, dataset coverage, evaluated-model complete-decision accuracy, and dataset construction and evaluation. It contains no training or adapted-model section. The eight-model chart and 16-model table use the supplied manuscript's Table 4; absent L3 results remain unreported. The figures are designed for the website and contain no manuscript figure crops.
+The page presents a newly drawn benchmark overview, 20 playable demonstrations, dataset coverage, evaluated-model complete-decision accuracy, and dataset construction and evaluation. It contains no training or adapted-model section. The overall leaderboard and 16-model table use the supplied manuscript's Table 4; absent L3 results remain unreported. The overview diagrams are native HTML components; photographs remain compressed visual evidence.
 
 ## Video cover
 
@@ -24,7 +24,7 @@ The cover controls show sequence numbers only. Media source paths and verificati
 
 ## Demonstrations and visual design
 
-The gallery contains 20 distinct generated scenarios across seven environments. Silent H.264 videos total approximately 3.9 MB. Only visible videos load and play; environment filters and individual playback controls support closer inspection. The overview uses four larger frames selected for visible hazard evidence and natural hand geometry. The page and native SVG diagrams use white, teal, and sage green.
+The gallery contains 20 distinct generated scenarios across seven environments. Silent H.264 videos total approximately 3.9 MB. Only visible videos load and play; environment filters and individual playback controls support closer inspection. The overview uses four larger frames selected for visible hazard evidence and natural hand geometry. The page and HTML diagrams use white, teal, and sage green, with blue and orange for the two result tracks.
 
 ## Files
 
@@ -34,10 +34,14 @@ The gallery contains 20 distinct generated scenarios across seven environments. 
 - `assets/videos/hero-examples.mp4` — continuous cover.
 - `assets/hero-chapters.json` — three cover chapters.
 - `assets/demos/` — gallery videos, posters, and manifest.
-- `assets/figures/web-overview.svg` — newly drawn benchmark overview.
-- `assets/figures/web-construction.svg` — newly drawn construction diagram.
+- `tools/overview.py` — native HTML overview generator.
+- `assets/overview/` — compressed photographic evidence for the HTML overview.
 - `assets/posters/` — compressed cover posters.
 - `assets/EmbodiSafety_Benchmark.pdf` — supplied manuscript.
 - `preview.py` — local static preview with video seeking support.
 
 The public page must be updated only when publication is authorized. Its GitHub Pages target is the root of `main` in `EmbodiSafety-1/embodisafety-1.github.io`.
+
+## Interactive presentation
+
+The overview is rendered as native HTML by `tools/overview.py`; photos remain compressed evidence images in `assets/overview/`. Scroll reveals and bar animations are in `app.js` and `styles.css`, with reduced-motion support. Gold, silver, and bronze medals mark the overall top three. The three highlighted models are explicitly selected; only the original Snapshot and Trajectory scores are displayed. No aggregate score is calculated. Results copy and native overview labels participate in the Chinese/English switch.
