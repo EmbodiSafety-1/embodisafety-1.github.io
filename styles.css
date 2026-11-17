@@ -124,3 +124,45 @@
  .results-comparison .leaderboard-scroll{align-self:stretch;display:flex}
  .results-comparison .leaderboard{height:100%}
 }
+/* Dataset introduction and compact video mosaic. */
+.demos{background:#fff}
+.dataset-heading{margin-bottom:14px}
+.dataset-heading h2{font-size:clamp(25px,2.5vw,36px);font-weight:800;letter-spacing:-.035em}
+.dataset-showcase{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:40px;align-items:stretch}
+.dataset-intro>p{font-size:clamp(14px,1.25vw,19px);line-height:1.65;color:var(--ink2)}
+.dataset-intro>p strong{font-weight:700;color:var(--ink)}
+.showcase-facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink);margin-top:23px}
+.showcase-facts dl{padding:14px 20px 14px 0;border-bottom:1px solid var(--line)}
+.showcase-facts dl:nth-child(2n){border-left:1px solid var(--line);padding-left:20px}
+.showcase-facts dd{font:750 clamp(25px,2.5vw,36px)/1.2 var(--head);color:var(--teal);letter-spacing:-.04em}
+.showcase-facts dt{font-size:13px;color:var(--muted);margin-top:4px}
+.dataset-media{display:flex;flex-direction:column;min-width:0}
+.dataset-media .demo-gallery{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));grid-auto-rows:1fr;gap:2px;background:#10241e;padding:3px;border-radius:12px;overflow:hidden;flex:1;min-height:260px}
+.dataset-media .demo-card{position:relative;min-height:0;grid-column:span 1;opacity:1;transform:none!important}
+.dataset-media .demo-media{height:100%;border-radius:0;background:#10241e;position:relative}
+.dataset-media .demo-media video{width:100%;height:100%;aspect-ratio:auto;object-fit:contain}
+.dataset-media .demo-caption{display:none}
+.demo-open{position:absolute;inset:0;z-index:2;border:0;background:transparent;padding:0}
+.demo-open span{position:absolute;right:3px;bottom:3px;background:#ffffffdf;border-radius:3px;padding:0 4px;font-size:12px;opacity:0;transition:opacity .15s}
+.demo-open:hover{box-shadow:inset 0 0 0 2px #9fd9c2}
+.demo-open:hover span,.demo-open:focus-visible span{opacity:1}
+.mosaic-footer{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-top:8px}
+.mosaic-note{font-size:12px;line-height:1.5;color:var(--muted)}
+.mosaic-footer .gallery-motion{border:0;padding:0;white-space:nowrap;font-size:10px}
+.dataset-media .demo-toolbar{margin:9px 0 0;gap:8px}
+.dataset-media .demo-filters{gap:0;padding-bottom:0}
+.dataset-media .demo-filter{padding:4px 6px;font-size:9px}
+.dataset-media #demoCount{font-size:9px}
+.demos .environment-mixture{display:grid;grid-template-columns:210px minmax(0,1fr);column-gap:30px;margin-top:28px;padding-top:23px;border-top:1px solid var(--line)}
+.demos .environment-mixture h3{font-size:18px;grid-column:1;grid-row:1/3}
+.demos .environment-bar{grid-column:2;height:32px}
+.demos .environment-key{grid-column:2;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:12px}
+.demos .track-pair{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+.demo-dialog{border:0;border-radius:14px;padding:0;width:min(940px,calc(100vw - 40px));max-height:90vh;overflow:auto;color:var(--ink);box-shadow:0 20px 90px #10241e44}
+.demo-dialog::backdrop{background:#10241ecc;backdrop-filter:blur(5px)}
+.demo-dialog video{width:100%;max-height:70vh;background:#10241e}
+.demo-dialog-copy{padding:18px 24px 24px}.demo-dialog-copy h3{font-size:20px}.demo-dialog-copy p{margin-top:6px;font-size:14px;color:var(--ink2)}
+.demo-dialog-close{position:absolute;right:12px;top:12px;z-index:3;border:0;border-radius:50%;width:34px;height:34px;font-size:25px;line-height:1;background:#fff;color:var(--ink)}
+@media(max-width:1000px){.dataset-showcase{gap:24px}.dataset-intro>p{font-size:14px}.dataset-media .demo-gallery{min-height:240px}.dataset-media .demo-toolbar{display:block}.dataset-media #demoCount{display:none}.showcase-facts dt{font-size:11px}.demos .environment-mixture{grid-template-columns:150px minmax(0,1fr)}}
+@media(max-width:720px){.dataset-showcase{grid-template-columns:1fr;gap:24px}.dataset-media .demo-gallery{min-height:230px}.dataset-heading h2{font-size:26px}.dataset-intro>p{font-size:15px}.showcase-facts dd{font-size:29px}.dataset-media .demo-filter{font-size:10px}.demos .environment-mixture{grid-template-columns:1fr;gap:14px}.demos .environment-mixture h3,.demos .environment-bar,.demos .environment-key{grid-column:1;grid-row:auto}.demos .environment-key{grid-template-columns:repeat(2,minmax(0,1fr))}.mosaic-note{font-size:11px}}
+.dataset-media .demo-media video{object-fit:cover}

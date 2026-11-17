@@ -129,3 +129,18 @@ selectMode(document.querySelector('.mode-choice'));
 
 const comingToast=document.createElement('div');comingToast.className='coming-toast';comingToast.setAttribute('role','status');document.body.append(comingToast);let toastTimer;
 document.querySelectorAll('[data-coming]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();clearTimeout(toastTimer);comingToast.textContent=`${link.dataset.coming} is coming soon`;const box=link.getBoundingClientRect();comingToast.style.left=`${Math.max(12,Math.min(innerWidth-230,box.right-210))}px`;comingToast.style.top=`${Math.min(innerHeight-52,box.bottom+10)}px`;comingToast.classList.add('visible');toastTimer=setTimeout(()=>comingToast.classList.remove('visible'),2400);}));
+
+const demoDialog=document.querySelector('#demoDialog');
+const dialogVideo=demoDialog.querySelector('video');
+document.querySelectorAll('.demo-open').forEach(button=>button.addEventListener('click',()=>{
+ const card=button.closest('.demo-card');
+ pauseDemo(card.querySelector('video'));
+ dialogVideo.src=card.querySelector('video').dataset.src;
+ demoDialog.querySelector('h3').textContent=card.querySelector('h3').textContent;
+ demoDialog.querySelector('.demo-dialog-copy p').textContent=card.querySelector('.demo-caption p').textContent;
+ demoDialog.showModal();
+ dialogVideo.play();
+}));
+demoDialog.querySelector('.demo-dialog-close').addEventListener('click',()=>demoDialog.close());
+demoDialog.addEventListener('click',event=>{if(event.target===demoDialog)demoDialog.close();});
+demoDialog.addEventListener('close',()=>{dialogVideo.pause();dialogVideo.removeAttribute('src');dialogVideo.load();updateGallery();});

@@ -1,6 +1,6 @@
 # EmbodiSafety project page
 
-Local website for **EmbodiSafety: Benchmarking Risk Understanding and Response in Embodied AI**. This revision has not been uploaded to GitHub.
+Local mirror of the project page for **EmbodiSafety: Benchmarking Risk Understanding and Response in Embodied AI**. The published copy is served by GitHub Pages from the root of `main` in `EmbodiSafety-1/embodisafety-1.github.io` at <https://embodisafety-1.github.io/>; this directory is the working source for the next revision.
 
 ## Preview
 
@@ -8,7 +8,7 @@ Open `index.html` directly, or run `python preview.py` and visit `http://127.0.0
 
 ## Content
 
-The page has four sections: Overview, Demos, Dataset, and Results. It includes 32 playable demonstrations, dataset coverage, and complete-decision accuracy for the 15 models with reported L3 scores. The overall top three remain highlighted without calculating a combined score. The overview diagrams use native HTML; evidence photographs remain compressed images.
+The page has three sections: Overview, Dataset video examples, and Results. It includes 32 playable demonstrations, dataset coverage, and complete-decision accuracy for the 15 models with reported L3 scores. The overall top three remain highlighted without calculating a combined score. The overview diagrams use native HTML; evidence photographs remain compressed images.
 
 ## Video cover
 
@@ -24,7 +24,7 @@ The cover controls show sequence numbers only. Media source paths and verificati
 
 ## Demonstrations and visual design
 
-The gallery contains 32 distinct scenarios across seven environments, including the 12 newly selected samples. Desktop screens show eight equal-sized videos per row, with four columns on tablets and two on phones. Only visible videos load and play. Each video has a sequence number, title, instruction, and environment. English and Chinese captions are supported. The Dataset section uses text and environment distributions without the former robot illustrations. Results place the compact model table on the left and green paired bars on the right beneath the three highlighted models; phones stack these panels.
+The gallery contains 32 distinct scenarios across seven environments, including the 12 newly selected samples. The merged dataset chapter pairs an introduction and four statistics on the left with an eight-column, 32-video mosaic on the right. Selecting a tile opens the full video and bilingual caption. Only visible videos load and play. Each video has a sequence number, title, instruction, and environment. English and Chinese captions are supported. The Dataset section uses text and environment distributions without the former robot illustrations. Results place the compact model table on the left and green paired bars on the right beneath the three highlighted models; phones stack these panels.
 
 ## Files
 

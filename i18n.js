@@ -1,5 +1,6 @@
  'use strict';
 const translations={
+'Dataset & demos':'数据集与示例','02 / Dataset video examples':'02 / 数据集视频示例','03 / Benchmark results':'03 / 评测结果',
 
 'Safety-critical visual evidence':'安全关键视觉场景','Two tracks, six responses':'两条任务线，六种响应','Evaluate the complete decision':'评测完整决策','Complete-decision accuracy':'完整决策准确率','Question + evidence':'问题与视觉证据','Model response':'模型回答','GPT-5 judge':'GPT-5裁判','Mode':'响应模式','Risk':'风险','Handling':'处置','Appropriate response':'恰当的响应','Grounded understanding':'基于场景的理解','Actionable next step':'可执行的下一步','All applicable checks must pass.':'全部适用检查均须通过。','Proceed':'执行','Refuse':'拒绝','Clarify':'澄清','Constrain':'约束执行','Recover':'恢复','Escalate':'请求人工介入','Safe to execute':'可以安全执行','Harmful objective':'目标有害','Information missing':'信息不足','Add safety constraints':'增加安全约束','Autonomous remedy':'自主恢复','Human help needed':'需要人工帮助','1 image · 4 response modes':'1张图像 · 4类响应','2–8 ordered frames · 6 modes':'2–8帧有序图像 · 6类响应','Garage door above a dog':'狗上方的车库门','Oil spill across the aisle':'通道油污','Wet mop beside power cables':'拖把靠近通电插排','Forklift crossing the route':'叉车横穿路线',
 'Trajectory data':'Trajectory 数据','Snapshot data':'Snapshot 数据',
@@ -20,6 +21,7 @@ const paragraphTranslations=[
 
 const originals=new Map();let language='en';
 function register(el,zh){if(el){originals.set(el,el.innerHTML);el.dataset.zh=zh;}}
+document.querySelectorAll('.dataset-heading [data-zh],.dataset-intro [data-zh],.mosaic-note[data-zh]').forEach(el=>register(el,el.dataset.zh));
 document.querySelectorAll('.overview-text p').forEach((el,i)=>register(el,paragraphTranslations[i]));
 document.querySelectorAll('.demo-card').forEach((card,i)=>{const title=card.querySelector('h3'),instruction=card.querySelector('.demo-caption p');register(title,title.dataset.zh);register(instruction,instruction.dataset.zh);});
 const nodes=new Map();const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const n=walker.currentNode;if(!n.parentElement.closest('script,style,[data-zh],#languageToggle,.native-overview,.dataset-comic'))nodes.set(n,n.textContent);}
