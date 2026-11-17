@@ -24,16 +24,29 @@ The cover controls show sequence numbers only. Media source paths and verificati
 
 ## Demonstrations and visual design
 
-The gallery contains 32 distinct scenarios across seven environments, including the 12 newly selected samples. The merged dataset chapter pairs an introduction and four statistics on the left with an eight-column, 32-video mosaic on the right. Selecting a tile opens the full video and bilingual caption. Only visible videos load and play. Each video has a sequence number, title, instruction, and environment. English and Chinese captions are supported. The Dataset section uses text and environment distributions without the former robot illustrations. Results place the compact model table on the left and green paired bars on the right beneath the three highlighted models; phones stack these panels.
+The gallery contains 32 distinct scenarios across seven environments, including the 12 newly selected samples. The merged dataset chapter pairs an introduction and four statistics on the left with an eight-column, 32-video mosaic on the right. Selecting a tile opens the full 640×360 master in a lightbox with a bilingual caption. Tiles play a 240 px, 8 fps, silent preview loop instead of the master; at most six previews play at once (`livePreviewLimit` in `app.js`), and the rest stay on their poster until they become one of the six or the visitor clicks a tile. Each video has a sequence number, title, instruction, and environment in the lightbox; English and Chinese captions are supported. The Dataset section uses text and environment distributions without the former robot illustrations. Results place the compact model table on the left and green paired bars on the right beneath the three highlighted models; phones stack these panels.
+
+## Media weight
+
+Measured on the published revision. One visit that scrolls through the whole page now transfers about 3.3 MB instead of 9.4 MB:
+
+- page shell (HTML, CSS, JS, fonts): 113 KB
+- 32 mosaic posters: 560 KB
+- cover video: 1.85 MB (unchanged)
+- mosaic previews: six at a time, about 19 KB each — 95 KB on first paint, 0.58 MB for all 32
+
+Animated GIF was measured and rejected: a single 8-second clip becomes 2.2 MB at 320 px / 10 fps / 128 colours, 8.3× its 263 KB H.264 source, and 32 tiles would weigh about 60 MB. Animated WebP at the same size is 454 KB per clip. The 240 px / 8 fps preview is 24 KB per clip, a 92% reduction over the masters.
 
 ## Files
 
 - `index.html` — page content, scores, and embedded chapter data.
 - `styles.css` — desktop and mobile layout.
-- `app.js` — chapter synchronization, timeline, playback, navigation, and figure enlargement.
+- `app.js` — chapter synchronization, timeline, playback, navigation, and the demo lightbox.
 - `assets/videos/hero-examples.mp4` — continuous cover.
 - `assets/hero-chapters.json` — three cover chapters.
-- `assets/demos/` — gallery videos, posters, and manifest.
+- `assets/demos/` — gallery masters, posters, previews, and manifest.
+- `assets/demos/previews/` — 240 px, 8 fps silent loops played by the mosaic.
+- `tools/make_previews.py` — regenerates the previews and manifest paths with ffmpeg.
 - `tools/overview.py` — native HTML overview generator.
 - `assets/overview/` — compressed photographic evidence for the HTML overview.
 - `assets/posters/` — compressed cover posters.
