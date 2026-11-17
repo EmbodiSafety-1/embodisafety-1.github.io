@@ -1,2 +1,0 @@
-def render_comic():
-    return '<figure class="dataset-illustration" lang="en"><img class="comic-snapshot" src="assets/overview/dataset-robot-comic.png" alt="Snapshot: a robot reasons from one image." loading="lazy" width="876" height="897"><img class="comic-trajectory" src="assets/overview/dataset-robot-comic.png" alt="Trajectory: a robot follows three ordered frames as a spill develops." loading="lazy" width="876" height="897"></figure>'

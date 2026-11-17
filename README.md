@@ -8,7 +8,7 @@ Open `index.html` directly, or run `python preview.py` and visit `http://127.0.0
 
 ## Content
 
-The page presents a newly drawn benchmark overview, 20 playable demonstrations, dataset coverage, evaluated-model complete-decision accuracy, and dataset construction and evaluation. It contains no training or adapted-model section. The overall leaderboard and 16-model table use the supplied manuscript's Table 4; absent L3 results remain unreported. The overview diagrams are native HTML components; photographs remain compressed visual evidence.
+The page has four sections: Overview, Demos, Dataset, and Results. It includes 32 playable demonstrations, dataset coverage, and complete-decision accuracy for the 15 models with reported L3 scores. The overall top three remain highlighted without calculating a combined score. The overview diagrams use native HTML; evidence photographs remain compressed images.
 
 ## Video cover
 
@@ -24,7 +24,7 @@ The cover controls show sequence numbers only. Media source paths and verificati
 
 ## Demonstrations and visual design
 
-The gallery contains 20 distinct generated scenarios across seven environments. Silent H.264 videos total approximately 3.9 MB. Only visible videos load and play; environment filters and individual playback controls support closer inspection. The overview uses four larger frames selected for visible hazard evidence and natural hand geometry. The page and HTML diagrams use white, teal, and sage green, with blue and orange for the two result tracks.
+The gallery contains 32 distinct scenarios across seven environments, including the 12 newly selected samples. Desktop screens show eight equal-sized videos per row, with four columns on tablets and two on phones. Only visible videos load and play. Each video has a sequence number, title, instruction, and environment. English and Chinese captions are supported. The Dataset section uses text and environment distributions without the former robot illustrations. Results place the compact model table on the left and green paired bars on the right beneath the three highlighted models; phones stack these panels.
 
 ## Files
 
@@ -44,4 +44,4 @@ The public page must be updated only when publication is authorized. Its GitHub 
 
 ## Interactive presentation
 
-The overview is rendered as native HTML by `tools/overview.py`; photos remain compressed evidence images in `assets/overview/`. Scroll reveals and bar animations are in `app.js` and `styles.css`, with reduced-motion support. Gold, silver, and bronze medals mark the overall top three. The three highlighted models are explicitly selected; only the original Snapshot and Trajectory scores are displayed. No aggregate score is calculated. Results copy and native overview labels participate in the Chinese/English switch.
+The overview is rendered as native HTML by `tools/overview.py`; photos remain compressed evidence images in `assets/overview/`. Scroll reveals and bar animations are in `app.js` and `styles.css`, with reduced-motion support. Gold, silver, and bronze medals mark the overall top three. The three highlighted models are explicitly selected; only the original Snapshot and Trajectory scores are displayed. No aggregate score is calculated. Page copy participates in the Chinese/English switch. Native overview figure labels remain English.
