@@ -1,0 +1,8 @@
+{
+  "tasks": 1632,
+  "scenarios": 844,
+  "snapshot": 1092,
+  "trajectory": 540,
+  "responseModes": 6,
+  "note": "Dataset totals quoted by the page copy. Single source for the overview intro, the dataset facts and the manifest is the 32-clip gallery, which is a curated sample and not the dataset size."
+}

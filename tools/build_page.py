@@ -3,12 +3,29 @@ from html import escape
 import json
 from overview import render_overview
 from leaderboard import render_leaderboard
+from overview_text import PARAGRAPHS
 
 root=Path(__file__).resolve().parents[1]
 chapters=json.loads((root/'assets/hero-chapters.json').read_text(encoding='utf-8'))
 demos=json.loads((root/'assets/demos/manifest.json').read_text(encoding='utf-8'))
 facts=json.loads((Path(__file__).with_name('benchmark-results.json')).read_text(encoding='utf-8'))
+dataset=json.loads((root/'assets/overview-dataset.json').read_text(encoding='utf-8'))
 models=[r for r in facts['results']['rows'] if r[1]!='Adapted']
+scored=[r for r in models if r[2] is not None]
+best=max(scored,key=lambda r:r[2])
+weakest=min(scored,key=lambda r:(r[2]+r[3])/2)
+overview_values={'tasks':f'{dataset["tasks"]:,}','scenarios':f'{dataset["scenarios"]:,}','snapshot':f'{dataset["snapshot"]:,}','trajectory':f'{dataset["trajectory"]:,}','best_model':best[0],'best_snapshot':f'{best[2]:.1f}%','best_trajectory':f'{best[3]:.1f}%','low_snapshot':f'{weakest[2]:.1f}%','low_trajectory':f'{weakest[3]:.1f}%'}
+assert dataset['tasks']+0==1632 and dataset['snapshot']+dataset['trajectory']==dataset['tasks']
+def overview_paragraphs():
+    markup=''
+    for en,zh in PARAGRAPHS:
+        holder={}
+        for lang,text in (('en',en),('zh',zh)):
+            for tag in ('strong','em'):
+                text=text.replace('{'+tag+'}','<'+tag+'>' if tag=='strong' else '').replace('{/'+tag+'}','</'+tag+'>' if tag=='strong' else '')
+            holder[lang]=text.format(**overview_values)
+        markup+=f'<p data-zh="{escape(holder["zh"])}">{holder["en"]}</p>'
+    return markup
 assert len(demos)==32
 cards=[]
 for i,d in enumerate(demos):
@@ -31,7 +48,7 @@ html='''<!doctype html>
 <body><a class="skip-link" href="#overview">Skip to overview</a><nav class="topnav" id="topnav" aria-label="Main navigation"><div class="nav-inner"><a href="#top" class="brand">EmbodiSafety<span class="brand-mark" aria-hidden="true">/</span></a><div class="nav-links" id="navLinks"><a href="#overview">Overview</a><a href="#demos">Dataset & demos</a><a href="#results">Results</a></div><div class="nav-actions"><button class="language-toggle" id="languageToggle" type="button" aria-label="Switch language">中文 / English</button><a class="nav-paper" href="#" data-coming="Paper">Paper ↗</a><a class="nav-github" href="#" data-coming="GitHub">GitHub ↗</a></div><button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button></div></nav>
 <main><header class="hero" id="top"><video id="heroVideo" class="hero-video" muted loop playsinline preload="auto" poster="assets/posters/refuse-pharmacy-theft.webp" aria-label="Three selected EmbodiSafety examples played continuously"><source src="assets/videos/hero-examples.mp4" type="video/mp4"></video><div class="hero-shade"></div><div class="hero-head"><p class="hero-kicker">Embodied AI safety benchmark</p><h1><span class="h1-name">EmbodiSafety</span><span class="h1-title">Benchmarking Risk Understanding<br>and Response in Embodied AI</span></h1><p class="subtitle">A visual benchmark for understanding risk and choosing safe responses.</p></div><div class="hero-footer"><div class="hero-example-nav"><span class="sequence-count" id="currentScene">01 / 03</span><div class="case-timeline" role="group" aria-label="Example sequence">CASE_TIMELINE</div><button id="heroPlay" type="button" aria-label="Pause background video" aria-pressed="false">Ⅱ</button></div></div></header>
 
-<section class="overview section" id="overview" aria-labelledby="overview-title"><div class="content-wrap"><div class="section-heading"><p class="section-kicker">01 / Overview</p><h2 id="overview-title">EmbodiSafety in one view.</h2></div>NATIVE_OVERVIEW<div class="overview-text"><p>EmbodiSafety evaluates how embodied agents interpret environmental risks and turn that understanding into a safe next step. The benchmark contains <strong>1,632 tasks across 844 visual scenarios</strong>, from routine household manipulation to medical and industrial settings. Snapshot tasks test decisions from a single image. Trajectory tasks add an ordered visual history, including situations that call for autonomous recovery or human intervention.</p><p>Each response is assessed for its <strong>response mode, risk explanation, and actionable handling</strong>. A complete decision must pass every applicable check. This connects hazard recognition to the action an agent would take, and makes the boundary between continuing, adapting, and seeking help part of the evaluation.</p></div></div></section>
+<section class="overview section" id="overview" aria-labelledby="overview-title"><div class="content-wrap"><div class="section-heading"><p class="section-kicker">01 / Overview</p><h2 id="overview-title">EmbodiSafety in one view.</h2></div>NATIVE_OVERVIEW<div class="overview-text">OVERVIEW_TEXT</div></div></section>
 
 <section class="demos section" id="demos" aria-labelledby="demos-title"><div class="wide-wrap"><div class="section-heading dataset-heading"><p class="section-kicker">02 / Dataset video examples</p><h2 id="demos-title" data-zh="EmbodiSafety：1,632个具身安全决策任务。">EmbodiSafety: 1,632 embodied safety decisions.</h2></div><div class="dataset-showcase"><div class="dataset-intro"><p data-zh="具身智能体需要识别风险，并决定下一步如何行动。EmbodiSafety 包含来自&lt;strong&gt;844个视觉场景&lt;/strong&gt;的&lt;strong&gt;1,632个决策任务&lt;/strong&gt;，覆盖家庭、办公、医疗和工业等环境。&lt;strong&gt;Snapshot&lt;/strong&gt; 任务使用单张图像，&lt;strong&gt;Trajectory&lt;/strong&gt; 任务使用2–8帧有序图像；六种响应模式涵盖安全执行、拒绝、澄清、约束执行、恢复和请求人工介入。">Embodied agents need to recognize risk and decide what to do next. EmbodiSafety pairs <strong>1,632 decision tasks</strong> with <strong>844 visual scenarios</strong> across homes, offices, hospitals, and industrial settings. <strong>Snapshot</strong> tasks use one image; <strong>Trajectory</strong> tasks use 2–8 ordered frames. Six response modes cover proceeding, refusing, clarifying, constrained execution, recovery, and human escalation.</p><div class="showcase-facts"><dl><dd>1,632</dd><dt>Decision tasks</dt></dl><dl><dd>844</dd><dt>Visual scenarios</dt></dl><dl><dd>1,092</dd><dt>Snapshot data</dt></dl><dl><dd>540</dd><dt>Trajectory data</dt></dl></div></div><div class="dataset-media"><div class="demo-gallery" id="demoGallery">DEMO_CARDS</div><div class="mosaic-footer"><p class="mosaic-note" data-zh="不同物体、场景与风险变化中的32个视频示例。">32 examples across diverse objects, environments, and changing risks.</p><button class="gallery-motion" id="galleryMotion" aria-pressed="false">Pause videos</button></div><div class="demo-toolbar"><div class="demo-filters" role="group" aria-label="Filter demonstrations by environment">DEMO_FILTERS</div><span id="demoCount" aria-live="polite">DEMO_TOTAL examples</span></div></div></div><div class="environment-mixture"><h3>Scenario environments</h3><div class="environment-bar" role="img" aria-label="Environment distribution: industrial workspace 20.8%, office 16.9%, home 12.6%, kitchen 9.9%, shopping mall 9.9%, hospital 9.6%, warehouse 8.8%, laboratory 7.7%, public space 1.5%, outdoor 1.2%, other 1.1%.">ENV_BAR</div><div class="environment-key">ENV_KEY</div></div><div class="track-pair"><article class="track" data-track="snapshot"><header><h3>Snapshot</h3><span>1,092 tasks · 1 image</span></header><p>The model judges the current scene: whether a task is safe, harmful, underspecified, or admissible under explicit constraints. Four response modes cover proceeding, refusing, asking for clarification, and constrained execution.</p></article><article class="track" data-track="trajectory"><header><h3>Trajectory</h3><span>540 tasks · 2–8 frames</span></header><p>Ordered observations reveal how risks develop during execution. This track includes all six response modes, adding autonomous recovery and human escalation when a task encounters failure.</p></article></div></div></section>
 
@@ -39,7 +56,7 @@ html='''<!doctype html>
 
 </main><dialog class="demo-dialog" id="demoDialog" aria-labelledby="demoDialogTitle"><button type="button" class="demo-dialog-close" aria-label="Close video">×</button><video controls playsinline muted></video><div class="demo-dialog-copy"><h3 id="demoDialogTitle"></h3><p></p></div></dialog>
 <footer class="site-footer"><div class="content-wrap"><div class="footer-links"><a href="#" data-coming="Paper">Paper ↗</a><a href="#" data-coming="GitHub">GitHub ↗</a><a href="#top">Top ↑</a></div></div></footer><script id="heroChapters" type="application/json">HERO_CHAPTERS</script></body></html>'''
-for token,value in [('NATIVE_LEADERBOARD',render_leaderboard(models)),('NATIVE_OVERVIEW',render_overview(models)),('DEMO_TOTAL',str(len(demos))),('CASE_TIMELINE',timeline),('DEMO_FILTERS',''.join(filters)),('DEMO_CARDS','\n'.join(cards)),('ENV_BAR',envbar),('ENV_KEY',envkey),('HERO_CHAPTERS',json.dumps(chapters).replace('<','\\u003c'))]:
+for token,value in [('NATIVE_LEADERBOARD',render_leaderboard(models)),('NATIVE_OVERVIEW',render_overview(models)),('DEMO_TOTAL',str(len(demos))),('CASE_TIMELINE',timeline),('DEMO_FILTERS',''.join(filters)),('DEMO_CARDS','\n'.join(cards)),('ENV_BAR',envbar),('ENV_KEY',envkey),('HERO_CHAPTERS',json.dumps(chapters).replace('<','\\u003c')),('OVERVIEW_TEXT',overview_paragraphs())]:
     html=html.replace(token,value)
 (root/'index.html').write_text(html,encoding='utf-8')
 print('Page built:',len(demos),'demos;',len(chapters),'hero scenes;',len(models),'evaluated models.')

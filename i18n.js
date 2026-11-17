@@ -20,9 +20,9 @@ const paragraphTranslations=[
 '每条回答从响应模式、风险解释与可执行处置三个方面评估。完整决策须通过所有适用检查，将危险识别与实际行动联系起来，并评测继续执行、调整策略和寻求帮助之间的决策边界。'];
 
 const originals=new Map();let language='en';
-function register(el,zh){if(el){originals.set(el,el.innerHTML);el.dataset.zh=zh;}}
+function register(el,zh){if(el&&zh){originals.set(el,el.innerHTML);el.dataset.zh=zh;}}
 document.querySelectorAll('.dataset-heading [data-zh],.dataset-intro [data-zh],.mosaic-note[data-zh]').forEach(el=>register(el,el.dataset.zh));
-document.querySelectorAll('.overview-text p').forEach((el,i)=>register(el,paragraphTranslations[i]));
+document.querySelectorAll('.overview-text p[data-zh]').forEach(el=>register(el,el.dataset.zh));
 document.querySelectorAll('.demo-card').forEach((card,i)=>{const title=card.querySelector('h3'),instruction=card.querySelector('.demo-caption p');register(title,title.dataset.zh);register(instruction,instruction.dataset.zh);});
 const nodes=new Map();const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const n=walker.currentNode;if(!n.parentElement.closest('script,style,[data-zh],#languageToggle,.native-overview,.dataset-comic'))nodes.set(n,n.textContent);}
 function translate(){if(language!=='zh')return;for(const id of ['galleryMotion','demoCount']){const el=document.getElementById(id),t=el.textContent;const translated=translations[t]||t.replace(/ examples?$/,' 个示例');if(t!==translated)el.textContent=translated;}for(const [el] of originals)if(el.innerHTML!==el.dataset.zh)el.innerHTML=el.dataset.zh;for(const [node] of nodes){if(node.parentElement?.closest('#demoCount,#galleryMotion'))continue;const text=node.textContent.trim();let zh=translations[text];if(/^\d+ examples?$/.test(text))zh=text.replace(/ examples?$/,' 个示例');if(zh&&node.textContent!==zh)node.textContent=zh;}}
