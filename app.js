@@ -46,24 +46,20 @@ const galleryMotion=document.querySelector('#galleryMotion');
 let galleryPaused=reducedMotion.matches;
 const userPausedVideos=new Set(),userPlayingVideos=new Set();
 const programPauses=new WeakSet(),programPlays=new WeakSet();
-function ensureSource(video){if(!video.getAttribute('src')){video.src=video.dataset.preview||video.dataset.src;video.load();}}
+function ensureSource(video){if(!video.getAttribute('src')){video.src=video.dataset.src;video.load();}}
 function pauseDemo(video){if(!video.paused){programPauses.add(video);video.pause();}}
 function playDemo(video){
   if(!video.paused)return;
   programPlays.add(video);
   video.play().catch(error=>{if(error.name==='NotAllowedError'){programPlays.delete(video);return;}if(error.name==='AbortError')return;throw error;});
 }
-const livePreviewLimit=6;
 function updateGallery(){
-  let live=0;
   demoVideos.forEach(video=>{const show=visibleVideos.has(video)&&!video.closest('.demo-card').hidden;
-    const allowed=show&&!document.hidden&&!userPausedVideos.has(video)&&(!galleryPaused||userPlayingVideos.has(video));
-    if(!allowed||live>=livePreviewLimit){pauseDemo(video);return;}
-    live++;ensureSource(video);playDemo(video);
+    if(!show||document.hidden||userPausedVideos.has(video)||(galleryPaused&&!userPlayingVideos.has(video)))pauseDemo(video);else{ensureSource(video);playDemo(video);}
   });
   galleryMotion.textContent=galleryPaused?'Play videos':'Pause videos';galleryMotion.setAttribute('aria-pressed',String(galleryPaused));
 }
-const demoObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)visibleVideos.add(entry.target);else visibleVideos.delete(entry.target);});updateGallery();},{threshold:.2});
+const demoObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){visibleVideos.add(entry.target);ensureSource(entry.target);}else visibleVideos.delete(entry.target);});updateGallery();},{threshold:.2});
 demoVideos.forEach(video=>{
   video.addEventListener('pause',()=>{if(!programPauses.delete(video)){userPausedVideos.add(video);userPlayingVideos.delete(video);}});
   video.addEventListener('play',()=>{if(!programPlays.delete(video)){userPausedVideos.delete(video);userPlayingVideos.add(video);}});
@@ -138,12 +134,12 @@ const demoDialog=document.querySelector('#demoDialog');
 const dialogVideo=demoDialog.querySelector('video');
 document.querySelectorAll('.demo-open').forEach(button=>button.addEventListener('click',()=>{
  const card=button.closest('.demo-card');
- demoVideos.forEach(pauseDemo);
+ pauseDemo(card.querySelector('video'));
  dialogVideo.src=card.querySelector('video').dataset.src;
  demoDialog.querySelector('h3').textContent=card.querySelector('h3').textContent;
  demoDialog.querySelector('.demo-dialog-copy p').textContent=card.querySelector('.demo-caption p').textContent;
  demoDialog.showModal();
- playVideo(dialogVideo);
+ dialogVideo.play();
 }));
 demoDialog.querySelector('.demo-dialog-close').addEventListener('click',()=>demoDialog.close());
 demoDialog.addEventListener('click',event=>{if(event.target===demoDialog)demoDialog.close();});

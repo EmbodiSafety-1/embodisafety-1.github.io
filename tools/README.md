@@ -6,14 +6,11 @@
 
 编辑 `assets/demos/manifest.json`。每个对象是一条视频，数组顺序就是展示顺序：
 
-- `src`：MP4 文件路径（640×360 原片，点击后灯箱播放）。
+- `src`：MP4 文件路径。
 - `poster`：播放前海报路径。
-- `preview`：马赛克内循环播放的轻量预览（240 宽、8fps、无音轨，约 19 KB）。
 - `title`：卡片标题。
 - `instruction`：标题下方的 caption。
 - `environment`：环境筛选分类。
-
-预览由 `python tools/make_previews.py` 从原片生成（需要 FFmpeg），会把 `preview` 路径写回 manifest；加 `--force` 可重编码。马赛克最多同时播放 6 个预览（`app.js` 里的 `livePreviewLimit`），其余保持海报直到轮到自己或被点击。不要用 GIF：同样长度会大 8 倍以上。
 
 视频循环播放到文件结尾；修改实际 MP4 才能改变播放时长，添加或修改 JSON 的 duration 字段不会裁切视频。
 
