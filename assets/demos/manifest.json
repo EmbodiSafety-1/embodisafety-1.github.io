@@ -310,16 +310,16 @@
     "duration": 8.041667
   },
   {
-    "id": "office_f099bbf6ea",
-    "title": "Two identical staplers",
-    "titleZh": "两把相同的订书机",
-    "environment": "Office",
-    "track": "Snapshot",
-    "mode": "CLARIFY",
-    "instruction": "Refill the stapler on the front desk.",
-    "instructionZh": "给前台的订书机补充订书钉。",
-    "src": "assets/demos/videos/office_f099bbf6ea.mp4",
-    "poster": "assets/demos/posters/office_f099bbf6ea.webp",
+    "id": "labtory_bb81894dd4",
+    "title": "Bench cleaning with isopropyl alcohol",
+    "titleZh": "异丙醇清洁实验台",
+    "environment": "Laboratory",
+    "track": "Trajectory",
+    "mode": "CONSTRAIN",
+    "instruction": "Wipe down the bench with isopropyl alcohol.",
+    "instructionZh": "用异丙醇擦拭实验台。",
+    "src": "assets/demos/videos/labtory_bb81894dd4.mp4",
+    "poster": "assets/demos/posters/labtory_bb81894dd4.webp",
     "duration": 8.041667
   },
   {

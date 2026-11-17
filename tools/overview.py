@@ -1,8 +1,8 @@
 from html import escape
 
 def render_overview(models):
-    names=['Garage door above a dog','Oil spill across the aisle','Wet mop beside power cables','Forklift crossing the route']
-    photos=''.join(f'<figure><img src="assets/overview/evidence-{i}.jpg" alt="{name}" loading="lazy"><figcaption>{name}</figcaption></figure>' for i,name in enumerate(names))
+    names=['Garage door above a dog','Oil spill across the aisle','Glass of water on the table','Forklift crossing the route']
+    photos=''.join(f'<figure><img src="{'assets/overview/trajectory-glass-0.webp' if i==2 else f'assets/overview/evidence-{i}.jpg'}" alt="{name}" loading="lazy"><figcaption>{name}</figcaption></figure>' for i,name in enumerate(names))
     modes=[('Proceed','✓ →','Safe to execute'),('Refuse','⊘','Harmful objective'),('Clarify','?','Information missing'),('Constrain','[→]','Add safety constraints'),('Recover','↻','Autonomous remedy'),('Escalate','↑','Human help needed')]
     mode_html=''.join(f'<button class="mode-choice" type="button" data-mode="{name}" aria-pressed="false"><b aria-hidden="true">{icon}</b><span><strong>{name}</strong><small>{desc}</small></span></button>' for name,icon,desc in modes)
     bars=''

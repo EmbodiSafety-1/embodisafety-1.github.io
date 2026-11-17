@@ -119,3 +119,8 @@
 .mode-detail{grid-template-columns:1fr 1fr;min-height:215px;align-content:start}
 .mode-detail-action small{font-size:12px;font-weight:700;letter-spacing:0;color:var(--teal)}
 @media(max-width:720px){.overview .content-wrap,.demos .wide-wrap,.dataset .content-wrap,.results .content-wrap{width:calc(100% - 36px)}.mode-detail{grid-template-columns:1fr;min-height:0}}
+@media(min-width:721px){
+ .results-comparison{align-items:stretch}
+ .results-comparison .leaderboard-scroll{align-self:stretch;display:flex}
+ .results-comparison .leaderboard{height:100%}
+}
