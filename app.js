@@ -120,7 +120,7 @@ const modeExamples={
     "Trajectory",
     "The task has encountered a failure that the robot cannot safely resolve on its own. It should stop autonomous attempts and request human assistance.",
     "Recoverability",
-    "Recoverability describes whether autonomous recovery remains feasible after the failure. An unrecoverable situation calls for human intervention instead of further autonomous attempts."
+    "Recoverability describes whether autonomous recovery is feasible after failure. Otherwise, stop autonomous attempts and request human intervention."
   ]
 };
 function selectMode(button){const name=button.dataset.mode,detail=modeExamples[name];document.querySelectorAll('.mode-choice').forEach(other=>other.setAttribute('aria-pressed',String(other===button)));document.querySelector('#modeDetailName').textContent=name;document.querySelector('#modeDetailTrack').textContent=detail[0];document.querySelector('#modeDetailScene').textContent=detail[1];document.querySelector('#modeDetailTerm').textContent=detail[2];document.querySelector('#modeDetailAction').textContent=detail[3];}
