@@ -144,3 +144,97 @@ document.querySelectorAll('.demo-open').forEach(button=>button.addEventListener(
 demoDialog.querySelector('.demo-dialog-close').addEventListener('click',()=>demoDialog.close());
 demoDialog.addEventListener('click',event=>{if(event.target===demoDialog)demoDialog.close();});
 demoDialog.addEventListener('close',()=>{dialogVideo.pause();dialogVideo.removeAttribute('src');dialogVideo.load();updateGallery();});
+
+// Each diagram explains its active step; pointer and keyboard take priority over autoplay.
+const construction=document.querySelector('#construction');
+const constructionMotion=document.querySelector('#constructionMotion');
+let constructionPaused=reducedMotion.matches,constructionVisible=false;
+const processContent={
+ generation:[
+  ['Scenario specification','GPT-5.6 combines the task, environment, robot, viewpoint and intended hazard.'],
+  ['Script & video synthesis','Specify the order of events and what must be visible, then generate the sequence with Seedance2.5.'],
+  ['Candidate sample','Pair selected frames with the instruction and draft the response mode, risk and next action.']
+ ],
+ selection:[
+  ['Snapshot','A child is ahead of the robot carrying a steaming mug.'],
+  ['Trajectory','Three ordered frames show the vials being taken and the tray left empty.'],
+  ['Vials on tray','Medication is still on the counter beside the fridge and the open bag.'],
+  ['Vials taken','The requester reaches into the tray and gathers the vials.'],
+  ['Empty tray','The vials are gone and the requester gestures beside the fridge.']
+ ],
+ review:[
+  ['Visual grounding','Reject candidates whose key objects or hazard are not visible.'],
+  ['Temporal consistency','Check that the frames support the claimed order and outcome.'],
+  ['Label support','Compare the independently predicted mode with the initial label.'],
+  ['Action safety','Check that the next step is feasible in the observed situation.']
+ ],
+ verification:[
+  ['Expert assessment','Five specialists review the annotations independently of the AI.'],
+  ['AI assessment','Compare the model and expert judgements to identify cases for re-review.'],
+  ['Retain','Keep a sample when its evidence supports the annotated decision.'],
+  ['Revise','Correct an annotation when the evidence supports a different decision.'],
+  ['Remove','Exclude samples with insufficient evidence for a reliable decision.']
+ ]
+};
+const groupSpecs=[
+ ['generation','.generation-panel','.process-step'],
+ ['selection','.selection-panel','.sample-track,.film-frame'],
+ ['review','.ai-panel','.review-check'],
+ ['verification','.human-panel','.independent-review button,.review-decisions button']
+];
+const processGroups=groupSpecs.map(([key,selector,itemSelector])=>{
+ const panel=construction.querySelector(selector),items=[...panel.querySelectorAll(itemSelector)],dock=panel.querySelector('.process-detail');
+ const group={key,panel,items,dock,index:0,elapsed:0,hovered:false,focused:false};
+ items.forEach((item,index)=>{
+  item.classList.add('process-interactive');item.dataset.tone=String(index%4);
+  item.addEventListener('pointerenter',()=>{group.hovered=true;activateProcess(group,index);});
+  item.addEventListener('pointerleave',()=>{group.hovered=false;group.elapsed=0;dock.style.removeProperty('--detail-shift');item.style.removeProperty('--pointer-x');item.style.removeProperty('--pointer-y');});
+  item.addEventListener('pointermove',event=>{
+   const rect=item.getBoundingClientRect(),x=event.clientX-rect.left,y=event.clientY-rect.top;
+   item.style.setProperty('--pointer-x',`${x}px`);item.style.setProperty('--pointer-y',`${y}px`);
+   dock.style.setProperty('--detail-shift',`${(x/rect.width-.5)*12}px`);
+  });
+  item.addEventListener('focus',()=>{group.focused=item.matches(':focus-visible');activateProcess(group,index);});
+  item.addEventListener('blur',()=>{group.focused=false;group.elapsed=0;});
+  item.addEventListener('click',()=>activateProcess(group,index));
+ });
+ panel.addEventListener('pointerleave',()=>dock.style.setProperty('--detail-shift','0px'));
+ activateProcess(group,0);return group;
+});
+function activateProcess(group,index){
+ group.index=index;group.elapsed=0;
+ group.items.forEach((item,i)=>{
+  const selected=i===index;
+  item.classList.toggle('active',selected);
+  item.setAttribute('aria-pressed',String(selected));
+  item.closest('tr')?.classList.toggle('active',selected);
+ });
+ const [title,copy]=processContent[group.key][index],dock=group.dock;
+ group.panel.dataset.activeStep=String(index);
+ dock.dataset.tone=String(index%4);
+ dock.querySelector('.detail-title').textContent=title;
+ dock.querySelector('.detail-copy').textContent=copy;
+ dock.style.setProperty('--process-progress','0');
+ if(!reducedMotion.matches)dock.animate([{opacity:.35,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:450,easing:'ease-out'});
+}
+function updateConstructionMotion(){
+ constructionMotion.setAttribute('aria-pressed',String(constructionPaused));
+ constructionMotion.textContent=document.documentElement.lang==='zh-CN'?(constructionPaused?'播放动效':'暂停动效'):(constructionPaused?'Play motion':'Pause motion');
+}
+constructionMotion.addEventListener('click',()=>{constructionPaused=!constructionPaused;updateConstructionMotion();});
+new IntersectionObserver(entries=>{constructionVisible=entries[0].isIntersecting;},{threshold:.03}).observe(construction);
+let processLast=0;
+function animateProcesses(time){
+ const delta=Math.min(time-processLast,100);processLast=time;
+ for(const group of processGroups){
+  const manual=group.hovered||group.focused;
+  if(!constructionVisible||document.hidden||constructionPaused||manual)continue;
+  group.elapsed+=delta;
+  if(group.elapsed>=7200)activateProcess(group,(group.index+1)%group.items.length);
+  group.dock.style.setProperty('--process-progress',String(group.elapsed/7200));
+ }
+ requestAnimationFrame(animateProcesses);
+}
+requestAnimationFrame(animateProcesses);
+reducedMotion.addEventListener('change',event=>{constructionPaused=event.matches;updateConstructionMotion();});
+updateConstructionMotion();

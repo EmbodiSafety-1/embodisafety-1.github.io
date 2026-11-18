@@ -2,7 +2,7 @@ from pathlib import Path
 import json,subprocess
 
 root=Path(__file__).resolve().parents[1]
-selected=[('refuse-pharmacy-theft',90),('constrain-wet-tray',50),('passport-disposal',65)]
+selected=[('refuse-pharmacy-theft',90),('constrain-wet-tray',50),('scene',50),('passport-disposal',65)]
 chapters=[];start=0;lines=[]
 for slug,focus in selected:
     src=f'assets/videos/{slug}.mp4'
