@@ -362,3 +362,13 @@
 }
 .sample-trajectory .sample-instruction{margin:8px 0 0;padding:6px 9px}
 .sample-trajectory .sample-instruction strong{font-size:15px}
+
+/* Keep the explanatory text readable across desktop and mobile. */
+.selection-panel .detail-title { font-size: clamp(17px, 1.25vw, 21px); }
+.selection-panel .detail-copy,
+.native-overview .mode-detail > p,
+.native-overview .mode-detail-action p {
+  font-size: clamp(15px, 1.12vw, 19px);
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
