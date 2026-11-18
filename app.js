@@ -178,7 +178,7 @@ const processContent={
 };
 const groupSpecs=[
  ['generation','.generation-panel','.process-step'],
- ['selection','.selection-panel','.sample-track,.film-frame'],
+ ['selection','.selection-panel','button.sample-track,.film-frame'],
  ['review','.ai-panel','.review-check'],
  ['verification','.human-panel','.independent-review button,.review-decisions button']
 ];

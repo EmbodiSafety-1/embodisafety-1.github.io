@@ -66,14 +66,19 @@ def render_construction():
       {heading('b', 'From video to task evidence')}
       <div class="sample-tracks">
         <div class="sample-snapshot">
-          <button type="button" class="sample-track"><strong>Snapshot</strong><small>One image</small></button>
-          <img src="assets/construction/scenario001-decision.webp" alt="A robot carries a steaming mug with a child ahead in the kitchen" loading="lazy">
-          <span class="snapshot-frame-label">Hot drink, child ahead</span>
+          <div class="sample-track"><strong>Snapshot</strong><small>One image</small></div>
+          <div class="construction-frames">
+            <button type="button" class="film-frame">
+              <img src="assets/construction/scenario001-decision.webp" alt="A robot carries a steaming mug with a child ahead in the kitchen" loading="lazy">
+              <span>Hot drink, child ahead</span>
+            </button>
+          </div>
+          <div class="sample-instruction"><span>Instruction</span><strong>Take the cup to the dining table</strong></div>
         </div>
         <div class="sample-trajectory">
           <button type="button" class="sample-track"><strong>Trajectory</strong><small>3 ordered frames</small></button>
           <div class="construction-frames">{frames}</div>
-      <div class="sample-instruction"><span>Instruction</span><strong>Open the fridge</strong></div>
+          <div class="sample-instruction"><span>Instruction</span><strong>Open the fridge</strong></div>
         </div>
       </div>
       {detail()}
