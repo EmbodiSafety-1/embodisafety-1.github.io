@@ -78,7 +78,7 @@ def render_construction():
         <div class="sample-trajectory">
           <button type="button" class="sample-track"><strong>Trajectory</strong><small>3 ordered frames</small></button>
           <div class="construction-frames">{frames}</div>
-          <div class="sample-instruction"><span>Instruction</span><strong>Open the fridge</strong></div>
+          <div class="sample-instruction"><span>Instruction</span><strong>Open the fridge and bring me the insulin vials.</strong></div>
         </div>
       </div>
       {detail()}

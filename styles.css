@@ -360,7 +360,7 @@
   .human-panel .expert-person{width:17px}
   .human-panel .expert-person::before{left:1px}
 }
-.sample-tracks .sample-instruction{margin:8px 0 0;padding:8px 10px;gap:4px 10px;flex-wrap:wrap}
+.sample-tracks .sample-instruction{display:grid;align-content:start;grid-template-columns:minmax(0,1fr);margin:8px 0 0;padding:8px 10px;gap:4px}
 @media(min-width:481px){.sample-tracks{row-gap:8px}.sample-snapshot,.sample-trajectory{display:grid;grid-template-rows:subgrid;grid-row:span 3}.sample-tracks .sample-track{margin-bottom:0}.sample-tracks .sample-instruction{margin-top:0}}
 .sample-tracks .sample-instruction strong{font-size:15px}
 
