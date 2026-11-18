@@ -372,3 +372,23 @@
   line-height: 1.65;
   overflow-wrap: anywhere;
 }
+
+/* Response modes and their explanatory headings. */
+.native-overview .mode-choice {
+  gap: clamp(8px, 0.9vw, 16px);
+  padding: 12px clamp(8px, 1vw, 16px);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.native-overview .mode-choice strong { font-size: clamp(15px, 1.2vw, 20px); }
+.native-overview .mode-choice small { font-size: clamp(13px, 0.95vw, 16px); }
+.native-overview .mode-detail-top strong {
+  font-size: clamp(23px, 1.75vw, 30px);
+  line-height: 1.25;
+}
+.native-overview .mode-detail-action small {
+  display: block;
+  font-size: clamp(19px, 1.45vw, 25px);
+  line-height: 1.3;
+  margin-bottom: 7px;
+}
